@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Resizer</title>
+</head>
+<body>
+    <h1>Icon Resizer</h1>
+    <p>Resizing updatedNEWIcon.png to required sizes...</p>
+    <canvas id="canvas16" width="16" height="16"></canvas>
+    <canvas id="canvas48" width="48" height="48"></canvas>
+    <canvas id="canvas128" width="128" height="128"></canvas>
+    
+    <div>
+        <h3>Right-click and save each icon:</h3>
+        <div>
+            <p>16x16: <canvas id="display16" width="16" height="16"></canvas></p>
+            <p>48x48: <canvas id="display48" width="48" height="48"></canvas></p>
+            <p>128x128: <canvas id="display128" width="128" height="128"></canvas></p>
+        </div>
+    </div>
+    
+    <script>
+        const img = new Image();
+        img.onload = function() {
+            // 16x16
+            const ctx16 = document.getElementById('canvas16').getContext('2d');
+            ctx16.drawImage(img, 0, 0, 16, 16);
+            document.getElementById('display16').getContext('2d').drawImage(img, 0, 0, 16, 16);
+            
+            // 48x48
+            const ctx48 = document.getElementById('canvas48').getContext('2d');
+            ctx48.drawImage(img, 0, 0, 48, 48);
+            document.getElementById('display48').getContext('2d').drawImage(img, 0, 0, 48, 48);
+            
+            // 128x128
+            const ctx128 = document.getElementById('canvas128').getContext('2d');
+            ctx128.drawImage(img, 0, 0, 128, 128);
+            document.getElementById('display128').getContext('2d').drawImage(img, 0, 0, 128, 128);
+            
+            console.log('Icons resized successfully!');
+        };
+        img.src = 'updatedNEWIcon.png';
+    </script>
+</body>
+</html>
