@@ -151,7 +151,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 12px;
+    }
+    .download-btn-icon {
+      flex-shrink: 0;
+    }
+    .download-btn-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+    .download-btn-main {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .download-btn-subtext {
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.9;
+      line-height: 1.2;
     }
     .download-btn:hover:not(:disabled) {
       transform: translateY(-2px);
@@ -346,8 +366,15 @@
             <span class="detail-value" id="videoResolution">--- x ---</span>
           </div>
         </div>
-        <div style="margin-top: 12px; padding: 8px; background: rgba(255, 165, 0, 0.1); border-radius: 6px; font-size: 11px; color: var(--warning-color); text-align: center;">
-          💡 For best results, click download when video is at the beginning
+        <div style="margin-top: 12px; padding: 10px; background: rgba(255, 165, 0, 0.1); border-radius: 6px; font-size: 11px; color: var(--warning-color); text-align: left;">
+          <div style="display: flex; align-items: flex-start; gap: 6px; margin-bottom: 6px;">
+            <span>�</span>
+            <span><strong>NOTE:</strong> Download starts from current video position and plays to the end</span>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 6px;">
+            <span>💡</span>
+            <span>For best results, click download when video is at the beginning</span>
+          </div>
         </div>
       </div>
       
@@ -371,12 +398,17 @@
       <!-- Action Section -->
       <div class="action-section">
         <button class="download-btn" id="downloadBtn" disabled>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          <span id="btnText">Download Video</span>
+          <div class="download-btn-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <div class="download-btn-text">
+            <span class="download-btn-main" id="btnText">Download Video</span>
+            <span class="download-btn-subtext">Starts from current position</span>
+          </div>
         </button>
       </div>
     </div>
