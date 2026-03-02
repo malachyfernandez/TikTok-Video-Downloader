@@ -2,27 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Welcome to Gemini Source Remover</title>
+  <title>TikTok Video Downloader - Settings</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Using Poppins font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #4285f4;
-      --text-color: #202124;
-      --secondary-text: #5f6368;
-      --border-color: #dadce0;
-      --background: #ffffff;
-      --hover-color: #f8f9fa;
+      --tiktok-black: #000000;
+      --tiktok-red: #fe2c55;
+      --tiktok-cyan: #25f4ee;
+      --text-primary: #161823;
+      --text-secondary: #666666;
+      --bg-light: #f8f9fa;
+      --border-color: #e0e0e0;
+      --success-color: #00d26a;
+      --error-color: #fe2c55;
     }
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: var(--background);
-      color: var(--text-color);
-      line-height: 1.5;
+      background: #ffffff;
+      color: var(--text-primary);
+      line-height: 1.6;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -35,7 +37,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: var(--hover-color);
+      background: var(--bg-light);
       padding: 12px 20px;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -50,7 +52,7 @@
     .dismiss-button {
       background: none;
       border: none;
-      color: var(--secondary-text);
+      color: var(--text-secondary);
       font-size: 20px;
       cursor: pointer;
       padding: 0 0 0 10px;
@@ -59,7 +61,7 @@
       justify-content: center;
       transition: color 0.2s ease;
     }
-    .dismiss-button:hover { color: var(--text-color); }
+    .dismiss-button:hover { color: var(--text-primary); }
     .settings-pointer.dismissing {
       transform: translateX(200%) scale(0.8);
       opacity: 0;
@@ -75,27 +77,27 @@
       margin-bottom: 48px;
     }
     .logo {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       margin: 0 auto 20px;
-      background-image: url('ICONFINAL.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      border-radius: 16px;
+      background: linear-gradient(135deg, var(--tiktok-red) 0%, var(--tiktok-cyan) 100%);
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 36px;
     }
     .welcome-title {
-      font-size: 32px;
+      font-size: 36px;
       margin: 0;
-      color: var(--primary-color);
+      color: var(--text-primary);
       font-weight: 700;
     }
     .welcome-subtitle {
       font-size: 18px;
-      color: var(--secondary-text);
+      color: var(--text-secondary);
       margin: 12px 0 0;
     }
     .features-grid {
@@ -106,7 +108,7 @@
       margin-bottom: 32px;
     }
     .feature-card {
-      background: var(--hover-color);
+      background: var(--bg-light);
       border-radius: 16px;
       padding: 32px;
     }
@@ -125,7 +127,7 @@
       width: 24px;
       height: 24px;
       margin-right: 12px;
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--tiktok-red) 0%, var(--tiktok-cyan) 100%);
       border-radius: 6px;
       display: flex;
       align-items: center;
@@ -134,78 +136,374 @@
       font-size: 12px;
       flex-shrink: 0;
     }
-    .settings-card { background: var(--hover-color); border-radius: 16px; padding: 24px 28px; margin-top: 32px; }
-    .setting-item { display: flex; align-items: center; justify-content: space-between; padding: 4px 0; }
-    .setting-label { font-size: 15px; margin-right: 24px; }
-    .setting-description { font-size: 13px; color: var(--secondary-text); margin: 4px 0 0 0; }
+    .settings-card {
+      background: var(--bg-light);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    .settings-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 20px;
+    }
+    .setting-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+    .setting-label {
+      font-size: 15px;
+      margin-right: 24px;
+    }
+    .setting-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 4px 0 0 0;
+    }
     /* Toggle switch styles */
-    .toggle-switch { position: relative; display: inline-block; width: 48px; height: 24px; }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: 0.4s; border-radius: 24px; }
-    .slider:before { position: absolute; content: ''; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: 0.4s; border-radius: 50%; }
-    input:checked + .slider { background-color: var(--primary-color); }
-    input:checked + .slider:before { transform: translateX(24px); }
-    footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; font-size: 14px; color: var(--secondary-text); }
-    .github-link { color: var(--primary-color); text-decoration: none; font-weight: 500; }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: '';
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background: linear-gradient(135deg, var(--tiktok-red) 0%, var(--tiktok-cyan) 100%);
+    }
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+    /* Download History Section */
+    .history-card {
+      background: var(--bg-light);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .history-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .clear-history-btn {
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .clear-history-btn:hover {
+      background: var(--tiktok-red);
+      color: white;
+      border-color: var(--tiktok-red);
+    }
+    .history-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .history-item:last-child {
+      border-bottom: none;
+    }
+    .history-filename {
+      font-size: 14px;
+      color: var(--text-primary);
+      max-width: 400px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .history-date {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .empty-history {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+    /* Debug Logs Section */
+    .logs-container {
+      background: var(--bg-light);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 32px;
+    }
+    .logs-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .logs-btn {
+      padding: 8px 16px;
+      background: var(--tiktok-red);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .logs-btn:hover {
+      background: #ff1a40;
+      transform: translateY(-1px);
+    }
+    .logs-btn.secondary {
+      background: var(--border-color);
+      color: var(--text-primary);
+    }
+    .logs-btn.secondary:hover {
+      background: #d0d0d0;
+    }
+    .logs-filter {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .logs-filter input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .logs-filter input:focus {
+      outline: none;
+      border-color: var(--tiktok-red);
+    }
+    .logs-list {
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .log-entry {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+    .log-timestamp {
+      color: var(--text-secondary);
+      font-size: 11px;
+      white-space: nowrap;
+      min-width: 80px;
+    }
+    .log-level {
+      font-weight: 600;
+      min-width: 60px;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+    .log-level.error {
+      color: var(--error-color);
+    }
+    .log-level.warn {
+      color: #ff9500;
+    }
+    .log-level.info {
+      color: var(--tiktok-red);
+    }
+    .log-level.debug {
+      color: var(--text-secondary);
+    }
+    .log-message {
+      flex: 1;
+      word-break: break-word;
+    }
+    .empty-logs {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+    footer {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .github-link {
+      color: var(--tiktok-red);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="settings-pointer" id="settingsPointer">
-    <span class="pointer-text">👉 Click extension icon to access settings anytime</span>
+    <span class="pointer-text">👉 Click extension icon to download videos anytime</span>
     <button class="dismiss-button">×</button>
   </div>
   <div class="container">
     <div class="welcome-header">
-      <div class="logo"></div>
-      <h1 class="welcome-title">Welcome to Gemini Source Remover</h1>
-      <p class="welcome-subtitle">Clean up your Gemini experience by hiding inline sources</p>
+      <div class="logo">TT</div>
+      <h1 class="welcome-title">TikTok Video Downloader</h1>
+      <p class="welcome-subtitle">Download TikTok videos directly to your device</p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
         <h2 class="feature-title">Key Features</h2>
         <div class="feature-item">
           <div class="feature-icon">✓</div>
-          <span>Toggle inline sources on/off instantly</span>
+          <span>Automatic video detection on TikTok pages</span>
         </div>
         <div class="feature-item">
           <div class="feature-icon">✓</div>
-          <span>Non-destructive approach using CSS</span>
+          <span>Multiple download methods for maximum compatibility</span>
         </div>
         <div class="feature-item">
           <div class="feature-icon">✓</div>
-          <span>Real-time updates without page refresh</span>
+          <span>Smart adaptive detection for changing layouts</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Automatic filename generation with timestamps</span>
         </div>
       </div>
       <div class="feature-card">
         <h2 class="feature-title">How It Works</h2>
         <div class="feature-item">
           <div class="feature-icon">1</div>
-          <span>Click the extension icon in your toolbar</span>
+          <span>Navigate to any TikTok video page</span>
         </div>
         <div class="feature-item">
           <div class="feature-icon">2</div>
-          <span>Toggle the switch to enable/disable sources</span>
+          <span>Click the extension icon in your toolbar</span>
         </div>
         <div class="feature-item">
           <div class="feature-icon">3</div>
-          <span>Sources disappear/reappear instantly</span>
+          <span>Click the Download Video button</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">4</div>
+          <span>Video downloads to your default folder</span>
         </div>
       </div>
     </div>
     <div class="settings-card">
+      <h2 class="settings-title">Settings</h2>
       <div class="setting-item">
         <label class="setting-label" for="autoEnableCheckbox">
           Enable by default
-          <p class="setting-description">Automatically hide sources when you open Gemini</p>
+          <p class="setting-description">Automatically enable video detection when you open TikTok</p>
         </label>
         <label class="toggle-switch">
           <input type="checkbox" id="autoEnableCheckbox" checked>
           <span class="slider"></span>
         </label>
       </div>
+      <div class="setting-item">
+        <label class="setting-label" for="videoFormatSelect">
+          Video Format
+          <p class="setting-description">Choose your preferred video format for downloads</p>
+        </label>
+        <select id="videoFormatSelect" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 14px; font-family: 'Poppins', sans-serif;">
+          <option value="mp4">MP4 (Recommended)</option>
+          <option value="webm">WebM</option>
+        </select>
+      </div>
+    </div>
+    <div class="history-card">
+      <div class="history-header">
+        <h2 class="history-title">Download History</h2>
+        <button class="clear-history-btn" id="clearHistoryBtn">Clear History</button>
+      </div>
+      <div class="history-list" id="historyList">
+        <div class="empty-history">No downloads yet. Start downloading TikTok videos!</div>
+      </div>
+    </div>
+    <div class="history-card">
+      <div class="history-header">
+        <h2 class="history-title">Debug Logs</h2>
+        <button class="clear-history-btn" id="clearLogsBtn">Clear Logs</button>
+      </div>
+      <div class="logs-container">
+        <div class="logs-controls">
+          <button class="logs-btn" id="refreshLogsBtn">Refresh Logs</button>
+          <button class="logs-btn" id="downloadLogsBtn">Download Logs</button>
+          <label class="logs-filter">
+            <input type="text" id="logsFilter" placeholder="Filter logs...">
+          </label>
+        </div>
+        <div class="logs-list" id="logsList">
+          <div class="empty-logs">No logs available. Use the extension to generate logs.</div>
+        </div>
+      </div>
     </div>
     <footer>
-      Gemini Source Remover • <a href="https://github.com/malachyfernandez/GeminiSourcesRemover" class="github-link" id="github-link">GitHub</a>
+      TikTok Video Downloader v1.0.0 • <a href="https://github.com/malachyfernandez/TikTokVideoDownloader" class="github-link" id="github-link">GitHub</a>
     </footer>
   </div>
   <script src="options.js"></script>

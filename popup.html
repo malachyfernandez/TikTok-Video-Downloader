@@ -1,202 +1,403 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Gemini Source Remover Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Video Downloader</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Tiny5&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #4285f4;
-      --text-color: #202124;
-      --secondary-text: #5f6368;
-      --border-color: #dadce0;
-      --background: #ffffff;
-      --hover-color: #f8f9fa;
+      --tiktok-black: #000000;
+      --tiktok-red: #fe2c55;
+      --tiktok-cyan: #25f4ee;
+      --text-primary: #161823;
+      --text-secondary: #666666;
+      --bg-light: #f8f9fa;
+      --border-color: #e0e0e0;
+      --success-color: #00d26a;
+      --error-color: #fe2c55;
+      --warning-color: #ffa500;
     }
     * {
-      font-family: 'Poppins', 'Roboto', 'Segoe UI', Arial, sans-serif;
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      box-sizing: border-box;
     }
     body {
       margin: 0;
       padding: 0;
-      background: #fff;
-      color: var(--text-color);
-      line-height: 1.5;
+      background: #ffffff;
+      min-width: 360px;
+      color: var(--text-primary);
     }
     .container {
-      padding: 16px;
-      background: var(--background);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      margin: 0 auto;
-      width: 380px;
+      padding: 20px;
     }
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 16px;
-      width: 100%;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
     }
-    .header-title {
+    .header-left {
       display: flex;
       align-items: center;
-      gap: 0;
+      gap: 12px;
     }
     .logo {
-      width: 30px;
-      height: 30px;
-      margin-right: 8px;
-      background-image: url('ICONFINAL.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--tiktok-red) 0%, var(--tiktok-cyan) 100%);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-    }
-    h1 {
-      font-size: 16px;
-      margin: 0;
+      color: white;
       font-weight: 700;
-      color: var(--primary-color);
+      font-size: 20px;
     }
-    .description {
-      color: var(--secondary-text);
-      font-size: 14px;
+    .header-title {
       margin: 0;
-      line-height: 18px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
     }
-    .content-layout {
+    .header-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin: 2px 0 0;
+    }
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-badge.active {
+      background: rgba(0, 210, 106, 0.1);
+      color: var(--success-color);
+    }
+    .status-badge.inactive {
+      background: rgba(254, 44, 85, 0.1);
+      color: var(--error-color);
+    }
+    .status-badge.loading {
+      background: rgba(255, 165, 0, 0.1);
+      color: var(--warning-color);
+    }
+    
+    /* Video Info Section */
+    .video-info {
+      background: var(--bg-light);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .video-info-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .video-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--tiktok-red);
+    }
+    .video-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .detail-item {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 4px;
     }
-    .settings-section {
-      background: var(--hover-color);
-      border-radius: 8px;
-      padding: 10px 12px;
-      margin-top: 0;
+    .detail-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .setting-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .setting-label {
-      font-size: 15px;
-      margin-right: 12px;
-    }
-    .setting-description {
-      font-size: 12px;
-      color: var(--secondary-text);
-      margin: 0;
-    }
-    /* Toggle switch styles */
-    .toggle-switch {
-      position: relative;
-      display: inline-block;
-      width: 48px;
-      height: 24px;
-    }
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: 0.4s;
-      border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute;
-      content: '';
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: 0.4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider {
-      background-color: var(--primary-color);
-    }
-    input:checked + .slider:before {
-      transform: translateX(24px);
-    }
-    footer {
-      text-align: center;
-      margin-top: 28px;
-      font-size: 13px;
-      color: var(--secondary-text);
-    }
-    .settings-button {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      color: var(--primary-color);
-      font-weight: 500;
+    .detail-value {
       font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    /* Action Section */
+    .action-section {
+      margin-bottom: 20px;
+    }
+    .download-btn {
+      width: 100%;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--tiktok-red) 0%, #ff1a40 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
       cursor: pointer;
-      padding: 0;
-      border-radius: 2px;
-      transition: background 0.1s ease, outline 0.1s ease;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    .settings-button:hover {
-      background: #f6f6f6;
-      outline: #f6f6f6 solid 4px;
+    .download-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(254, 44, 85, 0.3);
     }
-    .bullet {
-      margin: 0 6px;
-      color: var(--secondary-text);
+    .download-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    .download-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .download-btn.loading {
+      background: linear-gradient(135deg, var(--warning-color) 0%, #ff9500 100%);
+    }
+    .download-btn.success {
+      background: linear-gradient(135deg, var(--success-color) 0%, #00b359 100%);
+    }
+    
+    /* Progress Section */
+    .progress-section {
+      background: var(--bg-light);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .progress-section.active {
+      display: block;
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    .progress-status {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .progress-method {
+      font-size: 11px;
+      color: var(--text-secondary);
+      background: white;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--tiktok-red) 0%, var(--tiktok-cyan) 100%);
+      border-radius: 4px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    .progress-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+    
+    /* Message Section */
+    .message-section {
+      background: rgba(254, 44, 85, 0.05);
+      border: 1px solid rgba(254, 44, 85, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .message-section.active {
+      display: block;
+    }
+    .message-section.error {
+      background: rgba(254, 44, 85, 0.05);
+      border-color: rgba(254, 44, 85, 0.2);
+    }
+    .message-section.success {
+      background: rgba(0, 210, 106, 0.05);
+      border-color: rgba(0, 210, 106, 0.2);
+    }
+    .message-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-primary);
+    }
+    
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+    .footer-link {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s ease;
+    }
+    .footer-link:hover {
+      color: var(--tiktok-red);
+    }
+    .settings-icon {
+      width: 16px;
+      height: 16px;
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    .pulse {
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spinner {
+      animation: spin 1s linear infinite;
+    }
+    
+    /* Not on TikTok message */
+    .not-tiktok {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .not-tiktok-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .not-tiktok-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--text-primary);
+    }
+    .not-tiktok-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="container">
+    <!-- Header -->
     <div class="header">
-      <div class="logo">
+      <div class="header-left">
+        <div class="logo">TT</div>
+        <div>
+          <h1 class="header-title">TikTok Video Downloader</h1>
+          <p class="header-subtitle">Download videos instantly</p>
+        </div>
       </div>
-      <div class="header-title">
-        <p class="description" style="margin: 0;">
-          Gemini Source Remover<span class="bullet">•</span>
-        </p>
-        <button id="settings-button" class="settings-button">
-          Settings
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24">
-            <path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
+      <div class="status-badge inactive" id="statusBadge">No Video</div>
+    </div>
+    
+    <!-- Main Content (hidden when not on TikTok) -->
+    <div id="mainContent">
+      <!-- Video Info -->
+      <div class="video-info" id="videoInfo" style="display: none;">
+        <div class="video-info-header">
+          <svg class="video-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <polygon points="10,8 16,12 10,16 10,8"></polygon>
           </svg>
+          Video Detected
+        </div>
+        <div class="video-details">
+          <div class="detail-item">
+            <span class="detail-label">Duration</span>
+            <span class="detail-value" id="videoDuration">--:--</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Resolution</span>
+            <span class="detail-value" id="videoResolution">--- x ---</span>
+          </div>
+        </div>
+        <div style="margin-top: 12px; padding: 8px; background: rgba(255, 165, 0, 0.1); border-radius: 6px; font-size: 11px; color: var(--warning-color); text-align: center;">
+          💡 For best results, click download when video is at the beginning
+        </div>
+      </div>
+      
+      <!-- Progress Section -->
+      <div class="progress-section" id="progressSection">
+        <div class="progress-header">
+          <span class="progress-status" id="progressStatus">Downloading...</span>
+          <span class="progress-method" id="progressMethod">Method 1/3</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">Initializing download...</div>
+      </div>
+      
+      <!-- Message Section -->
+      <div class="message-section" id="messageSection">
+        <div class="message-text" id="messageText"></div>
+      </div>
+      
+      <!-- Action Section -->
+      <div class="action-section">
+        <button class="download-btn" id="downloadBtn" disabled>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span id="btnText">Download Video</span>
         </button>
       </div>
     </div>
-    <div class="content-layout">
-      <div class="settings-section">
-        <div class="setting-item">
-          <label class="setting-label" for="toggleSwitch">
-            Remove Inline Sources
-            <p class="setting-description">Hide source citations in Gemini responses</p>
-          </label>
-          <label class="toggle-switch">
-            <input type="checkbox" id="toggleSwitch">
-            <span class="slider"></span>
-          </label>
-        </div>
-      </div>
+    
+    <!-- Not on TikTok Message -->
+    <div class="not-tiktok" id="notTiktok" style="display: none;">
+      <div class="not-tiktok-icon">📹</div>
+      <h2 class="not-tiktok-title">Not on TikTok</h2>
+      <p class="not-tiktok-text">Navigate to a TikTok video to start downloading</p>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+      <a href="#" class="footer-link" id="settingsLink">
+        <svg class="settings-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        Settings
+      </a>
+      <span style="font-size: 12px; color: var(--text-secondary);">v1.0.0</span>
     </div>
   </div>
   <script src="popup.js"></script>

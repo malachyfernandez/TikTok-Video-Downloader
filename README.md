@@ -1,73 +1,118 @@
-# Gemini Source Remover
+# TikTok Video Downloader
 
-A Chrome extension that toggles the removal of inline source citations on Google Gemini.
+A powerful Chrome extension that lets you download TikTok videos directly from your browser with multiple intelligent fallback methods.
 
-**Gemini Source Remover** gives you control over the inline source citations that appear in Gemini responses, allowing you to focus on the content without visual distractions.
+## ✨ Features
 
----
+- **Smart Video Detection** - Automatically finds TikTok videos on any page
+- **Multiple Download Methods** - Blob URL, MediaRecorder, and fetch proxy fallbacks
+- **Format Selection** - Choose between MP4 and WebM formats in settings
+- **Adaptive Technology** - Handles TikTok's changing website structure
+- **One-Click Downloads** - Simple, intuitive interface
+- **Download History** - Track your downloaded videos
+- **Smart Filtering** - Excludes video list thumbnails and previews
 
-## 🔍 What It Does
+## 🚀 Installation
 
-- **Toggle inline sources**: Hide or show source citations in Gemini responses with a simple switch
-- **Non-destructive approach**: Uses CSS to hide elements rather than removing them, preserving Gemini's functionality
-- **Real-time updates**: Changes take effect immediately without needing to refresh the page
-- **Clean interface**: Beautiful popup UI inspired by modern design principles
+1. Download this repository
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable "Developer mode"
+4. Click "Load unpacked" and select the extension folder
+5. Pin the extension to your toolbar for easy access
 
----
+## 📖 Usage
 
-## 🚀 How to Install (Chrome)
+1. Navigate to any TikTok video page
+2. Click the extension icon in your toolbar
+3. If a video is detected, click "Download Video"
+4. Choose your preferred format in settings (MP4 recommended)
+5. Video downloads automatically to your default folder
 
-You'll need to enable **Developer Mode** to install Gemini Source Remover manually.
+**Pro Tip:** For best results, click download when the video is at the beginning (0:00).
 
-1. **Download or clone this repo** to your computer.
+## ⚙️ Settings
 
-2. Open **Google Chrome** and go to:  
-   `chrome://extensions`
-
+Access settings to customize:
+- **Video Format** - MP4 (recommended) or WebM
+- **Auto-Enable** - Start detection automatically
+- **Download History** - View and manage your downloads
 3. In the top right corner, **turn on Developer Mode** (toggle switch).
 
 4. Click **"Load unpacked"** and select the folder where you downloaded this project.
 
-That's it! You should now see Gemini Source Remover in your list of extensions.
+That's it! You should now see TikTok Video Downloader in your list of extensions.
 
 ---
 
 ## 🎯 How to Use
 
-1. **Navigate to Gemini**: Go to [gemini.google.com](https://gemini.google.com)
-2. **Click the extension icon**: Click on the Gemini Source Remover icon in your Chrome toolbar
-3. **Toggle the switch**: Use the toggle to enable or disable inline source removal
-4. **See changes instantly**: Sources will immediately disappear or reappear on the current page
+1. **Navigate to TikTok**: Go to any TikTok video page (e.g., `tiktok.com/@username/video/...`)
+2. **Click the extension icon**: Click on the TikTok Video Downloader icon in your Chrome toolbar
+3. **Click Download**: Click the "Download Video" button in the popup
+4. **Wait for completion**: The extension will automatically detect and download the video
+5. **Find your video**: The video will be saved to your default downloads folder
 
 ---
 
-## 🧠 Why You'll Love It
+## 🧠 Key Features
 
-- **Cleaner reading experience**: Focus on Gemini's responses without citation clutter
-- **Preserves functionality**: Doesn't break Gemini's underlying framework or features
-- **Simple and intuitive**: One-click toggle with no complicated settings
-- **Reliable**: Uses CSS hiding instead of DOM manipulation for better compatibility
+- **Multiple Detection Strategies**: Uses blob URLs, attributes, context, and ML-style scoring
+- **Fallback Methods**: If one download method fails, automatically tries alternatives
+- **Smart Adaptation**: Stores successful patterns for future detection
+- **Progress Tracking**: Real-time progress updates during download
+- **Cross-Platform Filenames**: Sanitized filenames work on all operating systems
+- **Clean UI**: Modern, TikTok-inspired interface
 
 ---
 
 ## 💡 Built for people who:
 
-- Use Google Gemini regularly
-- Prefer a cleaner, less cluttered interface
-- Want to reduce visual distractions while reading
-- Value simplicity and reliability
+- Want to save TikTok videos for offline viewing
+- Need a reliable video downloader that adapts to website changes
+- Prefer a simple, one-click download experience
+- Want automatic video detection without manual URL copying
 
 ---
 
 ## 🔧 Technical Details
 
-- **Approach**: Uses CSS `display: none !important` to hide `sources-carousel-inline` elements
-- **Storage**: Saves user preference in Chrome's local storage
-- **Compatibility**: Works with Gemini's Angular-based framework
-- **Performance**: Lightweight and doesn't impact page load times
+- **Detection Methods**: 7 strategies including blob URL detection, attribute matching, context selectors, ML-style scoring, and size/position heuristics
+- **Download Methods**: 3 fallback strategies (blob fetch, MediaRecorder, source detection)
+- **Adaptive Learning**: Stores successful detection patterns in Chrome storage
+- **Real-time Monitoring**: Uses MutationObserver to detect new videos as you scroll
+- **Filename Sanitization**: Cross-platform compatible filenames
+- **Privacy**: All processing happens locally in your browser
 
 ---
 
-✨ No complicated setup. No confusing menus. Gemini Source Remover is built to stay out of your way and just work.
+## ⚠️ Known Limitations
 
-Made with ❤️ for a cleaner AI experience.
+- **Blob URL Access**: Some videos may require fallback recording methods
+- **Video Quality**: Downloads the quality available in the player's current state
+- **Structure Changes**: TikTok may change their layout (extension adapts automatically)
+- **Performance**: Recording entire videos may take time for longer content
+
+---
+
+## 🛠️ File Structure
+
+```
+TikTokVideoDownloader/
+├── manifest.json          # Extension configuration
+├── content.js             # Video detection and download logic
+├── background.js          # Download coordination and storage
+├── popup.html             # Popup UI
+├── popup.js               # Popup controller
+├── options.html           # Settings page
+├── options.js             # Settings logic
+├── ICONFINAL.png          # Extension icon
+└── README.md              # This file
+```
+
+---
+
+✨ No complicated setup. No manual URL copying. TikTok Video Downloader is built to just work.
+
+Made with ❤️ for seamless video downloading.
+
+**Version**: 1.0.0

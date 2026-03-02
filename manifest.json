@@ -1,17 +1,18 @@
 {
   "manifest_version": 3,
-  "name": "Gemini Source Remover",
-  "version": "0.0.0.1",
-  "description": "Toggles the removal of inline sources on Gemini.",
-  "permissions": ["storage"],
+  "name": "TikTok Video Downloader",
+  "version": "1.0.0",
+  "description": "Download TikTok videos directly from your browser with multiple fallback methods.",
+  "permissions": ["storage", "downloads", "activeTab", "scripting"],
+  "host_permissions": ["https://www.tiktok.com/*", "https://*.tiktok.com/*"],
   "icons": {
-    "16": "ICONFINAL.png",
-    "48": "ICONFINAL.png",
-    "128": "ICONFINAL.png"
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
   },
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "ICONFINAL.png"
+    "default_icon": "icon-48.png"
   },
   "background": {
     "service_worker": "background.js"
@@ -19,8 +20,9 @@
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["*://gemini.google.com/*"],
-      "js": ["content.js"]
+      "matches": ["*://www.tiktok.com/*", "*://*.tiktok.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
     }
   ]
 }
